@@ -46,6 +46,12 @@ cd /runner
 
 if [ -d "./runner" ]; then
     echo "Runner already exists, skipping download"
+    
+    if [ -f "./runner/.runner" ]; then
+        echo "Runner already configured, starting..."
+        export RUNNER_ALLOW_RUNASROOT=1
+        exec ./run.sh
+    fi
 else
     echo "Downloading GitHub Actions Runner..."
     RUNNER_VERSION="2.322.0"
@@ -61,6 +67,11 @@ else
 fi
 
 export RUNNER_ALLOW_RUNASROOT=1
+
+if [ -f "./.runner" ]; then
+    echo "Runner already configured, starting..."
+    exec ./run.sh
+fi
 
 echo "Configuring runner..."
 ./config.sh \
