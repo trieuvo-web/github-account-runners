@@ -1,0 +1,9 @@
+.env
+*.log
+runner.tar.gz
+runner/_work
+runner/externals
+runner/bin
+runner/.runner
+._*
+.DS_Store

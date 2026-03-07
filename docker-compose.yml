@@ -1,0 +1,14 @@
+services:
+  github-runner:
+    build: ./runner
+    container_name: github-runner
+    env_file:
+      - .env
+    environment:
+      - RUNNER_NAME_PREFIX=${RUNNER_NAME_PREFIX:-docker-runner}
+      - RUNNER_LABELS=${RUNNER_LABELS:-self-hosted,docker,linux}
+      - RUNNER_WORKDIR=${RUNNER_WORKDIR:-/_runner/_work}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    privileged: true
