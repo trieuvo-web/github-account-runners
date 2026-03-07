@@ -12,9 +12,9 @@ if [ -z "$GITHUB_TOKEN" ]; then
     exit 1
 fi
 
-echo "Getting account-level runner registration token for: $GITHUB_ACCOUNT"
+echo "Getting org-level runner registration token for: $GITHUB_ACCOUNT"
 
-TOKEN=$(gh api "users/${GITHUB_ACCOUNT}/actions/runners/registration-token" \
+TOKEN=$(gh api "orgs/${GITHUB_ACCOUNT}/actions/runners/registration-token" \
     -H "Accept: application/vnd.github+json" \
     -H "X-GitHub-Api-Version: 2022-11-28" \
     --jq '.token')

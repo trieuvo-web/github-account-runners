@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     wget \
     tar \
     gzip \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -fsSL https://get.docker.com -o get-docker.sh \

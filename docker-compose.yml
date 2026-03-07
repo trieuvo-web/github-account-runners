@@ -1,14 +1,41 @@
 services:
-  github-runner:
+  runner-tuvi-online:
     build: ./runner
-    container_name: github-runner
     env_file:
-      - .env
+      - .env.tuvi-online
     environment:
       - RUNNER_NAME_PREFIX=${RUNNER_NAME_PREFIX:-docker-runner}
       - RUNNER_LABELS=${RUNNER_LABELS:-self-hosted,docker,linux}
       - RUNNER_WORKDIR=${RUNNER_WORKDIR:-/_runner/_work}
+      - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
     privileged: true
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 2G
+
+  runner-tuvi-ansao:
+    build: ./runner
+    env_file:
+      - .env.tuvi-ansao
+    environment:
+      - RUNNER_NAME_PREFIX=${RUNNER_NAME_PREFIX:-docker-runner}
+      - RUNNER_LABELS=${RUNNER_LABELS:-self-hosted,docker,linux}
+      - RUNNER_WORKDIR=${RUNNER_WORKDIR:-/_runner/_work}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    privileged: true
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 2G
