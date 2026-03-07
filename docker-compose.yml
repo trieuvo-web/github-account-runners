@@ -17,9 +17,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 4G
+          memory: 8G
         reservations:
-          memory: 2G
+          memory: 4G
 
   runner-tuvi-ansao:
     build: ./runner
@@ -40,6 +40,6 @@ services:
       replicas: 5
       resources:
         limits:
-          memory: 4G
+          memory: 8G
         reservations:
-          memory: 2G
+          memory: 4G
