@@ -32,10 +32,5 @@ services:
     privileged: true
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    deploy:
-      replicas: 5
-      resources:
-        limits:
-          memory: 16G
-        reservations:
-          memory: 8G
+    mem_limit: 16g
+    mem_reservation: 8g
