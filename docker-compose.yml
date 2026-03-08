@@ -34,3 +34,5 @@ services:
       - "host.docker.internal:host-gateway"
     mem_limit: 16g
     mem_reservation: 8g
+    deploy:
+      replicas: 3
